@@ -39,6 +39,7 @@
       }
     ],
     "class-methods-use-this": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "import/no-unresolved": "off"
   }
 }
