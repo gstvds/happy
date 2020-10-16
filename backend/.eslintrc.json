@@ -31,13 +31,7 @@
     "@typescript-eslint/no-unused-vars": ["error", {
       "argsIgnorePattern": "_"
       }],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "ts": "never"
-      }
-    ],
+    "import/extensions": "off",
     "class-methods-use-this": "off",
     "prettier/prettier": "error",
     "import/no-unresolved": "off"
