@@ -81,7 +81,7 @@ $ yarn start
 
 ## :memo: License
 
-This project is under MIT License. Check the [LINCESE](https://github.com/gstvds/happy/blob/master/LICENSE.txt) for more information.
+This project is under MIT License. Check the [LINCESE](https://github.com/gstvds/happy/blob/master/LICENSE) for more information.
 
 ---
 
