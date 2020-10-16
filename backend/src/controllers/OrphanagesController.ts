@@ -30,4 +30,12 @@ export default {
 
     return response.status(201).json(orphanage);
   },
+
+  async index(request: Request, response: Response): Promise<Response> {
+    const orphanagesRepository = getRepository(Orphanage);
+
+    const orphanages = await orphanagesRepository.find();
+
+    return response.status(200).json(orphanages);
+  },
 };
