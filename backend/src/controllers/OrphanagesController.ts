@@ -38,4 +38,13 @@ export default {
 
     return response.status(200).json(orphanages);
   },
+
+  async show(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const orphanagesRepository = getRepository(Orphanage);
+    const orphanage = await orphanagesRepository.findOneOrFail(id);
+
+    return response.status(200).json(orphanage);
+  },
 };
