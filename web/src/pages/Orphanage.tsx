@@ -82,7 +82,7 @@ export default function Orphanage() {
                     </Map>
 
                     <footer>
-                      <a target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/dir/?api=18&destination=${orphanage.latitude},${orphanage.longitude}`}>Ver rotas no Google Maps</a>
+                      <a target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/dir/?api=1&destination=${orphanage.latitude},${orphanage.longitude}`}>Ver rotas no Google Maps</a>
                     </footer>
                   </div>
 
