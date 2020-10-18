@@ -32,6 +32,11 @@
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "no-use-before-define": [0],
+    "@typescript-eslint/no-use-before-define": [0],
+    "react/style-prop-object": "off",
+    "import/no-extraneous-dependencies": "off",
+    "camelcase":"off",
     "react/jsx-filename-extension": [
       1,
       {
@@ -48,11 +53,11 @@
         "ts": "never",
         "tsx": "never"
       }
-    ],
-    "settings": {
-      "import/resolver": {
-        "typescript": {}
-      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
     }
   }
 }
