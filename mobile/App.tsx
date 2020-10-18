@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import {
   useFonts,
   Nunito_700Bold,
@@ -10,6 +10,7 @@ import {
 } from '@expo-google-fonts/nunito';
 
 import Routes from './src/routes';
+import core from './core';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -23,7 +24,7 @@ const App: React.FC = () => {
   }
   return (
     <>
-      <StatusBar style="auto" />
+      <StatusBar style={core.ui.state.STATUS_BAR.value} />
       <Routes />
     </>
   );

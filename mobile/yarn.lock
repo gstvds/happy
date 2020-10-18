@@ -1207,6 +1207,16 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
+"@pulsejs/core@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@pulsejs/core/-/core-3.4.0.tgz#93d0fe7b9f528c818f4449ee17d21b30ce7b361d"
+  integrity sha512-TVJlthL+pOTZnzIc9dHwENUwVDfP9qVaUrgWPAL3gVQvaaOcYsW5eU/pB0zbN3K99da5ORPI5ecMJ9Ya5mjc5Q==
+
+"@pulsejs/react@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@pulsejs/react/-/react-3.4.0.tgz#ac003b5f6eb820e9a5f8e09f0c2a776767fb0349"
+  integrity sha512-IVIWBwFMtTzJ2stiLf843m21iiZYPjqpuPK+OhFwfb3PVs4MFS3B1msk2+9vk0U7V7nrVs94SDifHuicn3CSuw==
+
 "@react-native-community/cli-debugger-ui@^4.9.0":
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.9.0.tgz#4177764ba69243c97aa26829d59d9501acb2bd71"

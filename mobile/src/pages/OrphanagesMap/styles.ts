@@ -3,6 +3,12 @@ import { Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
 import fonts from '../../helpers/fonts';
 
+import { ITheme } from '../../../core/interfaces/ui.interfaces';
+
+interface Themed {
+  theme: ITheme;
+}
+
 export const Container = styled.View`
   flex: 1;
 `;
@@ -21,19 +27,19 @@ export const CalloutContainer = styled.View`
   justify-content: center;
 `;
 
-export const CalloutText = styled.Text`
-  color: #0089a5;
+export const CalloutText = styled.Text<Themed>`
+  color: ${props => props.theme.color.blue};
   font-size: 14px;
   font-family: ${fonts.nunito_bold};
 `;
 
-export const Footer = styled.View`
+export const Footer = styled.View<Themed>`
   position: absolute;
   left: 24px;
   right: 24px;
   bottom: 32px;
 
-  background-color: #fff;
+  background-color: ${props => props.theme.color.white};
   border-radius: 20px;
   height: 56px;
   padding-left: 24px;
@@ -45,15 +51,15 @@ export const Footer = styled.View`
   elevation: 3;
 `;
 
-export const FooterText = styled.Text`
-  color: #8fa7b3;
+export const FooterText = styled.Text<Themed>`
+  color: ${props => props.theme.color.grey};
   font-family: ${fonts.nunito_bold};
 `;
 
-export const CreateOrphanageButton = styled.TouchableOpacity`
+export const CreateOrphanageButton = styled.TouchableOpacity<Themed>`
   width: 56px;
   height: 56px;
-  background-color: #15c3d6;
+  background-color: ${props => props.theme.color.light_blue};
   border-radius: 20px;
   justify-content: center;
   align-items: center;
