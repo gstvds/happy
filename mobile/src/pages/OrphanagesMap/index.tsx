@@ -2,6 +2,8 @@ import React from 'react';
 import { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
 
+import { useNavigation } from '@react-navigation/native';
+
 import {
   Container,
   Map,
@@ -14,7 +16,10 @@ import {
 
 import mapMarker from '../../images/map-marker.png';
 
+import { ORPHANAGE_DETAILS_PAGE } from '../../helpers/routes';
+
 const OrphanagesMap: React.FC = () => {
+  const navigation = useNavigation();
   return (
     <Container>
       <Map
@@ -37,7 +42,10 @@ const OrphanagesMap: React.FC = () => {
             y: 0.7,
           }}
         >
-          <Callout tooltip onPress={() => {}}>
+          <Callout
+            tooltip
+            onPress={() => navigation.navigate(ORPHANAGE_DETAILS_PAGE)}
+          >
             <CalloutContainer>
               <CalloutText>Lar Doce Lar</CalloutText>
             </CalloutContainer>
