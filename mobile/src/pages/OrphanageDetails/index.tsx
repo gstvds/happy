@@ -22,8 +22,10 @@ import {
   ScheduleContainer,
   ScheduleItemBlue,
   ScheduleItemGreen,
+  ScheduleItemRed,
   ScheduleTextBlue,
   ScheduleTextGreen,
+  ScheduleTextRed,
   Separator,
   Title,
 } from './styles';
@@ -36,9 +38,17 @@ const OrphanageDetails: React.FC = () => {
 
   const handleWhatsApp = () => {
     Linking.openURL(
-      `http://api.whatsapp.com/send?1=pt_br&phone=${
+      `https://api.whatsapp.com/send?1=pt_br&phone=${
         orphanages[params.orphanage].whatsapp
       }`,
+    );
+  };
+
+  const handleOpenMaps = () => {
+    Linking.openURL(
+      `https://www.google.com/maps/dir/?api=1&destination=${
+        orphanages[params.orphanage].latitude
+      },${orphanages[params.orphanage].longitude}`,
     );
   };
 
@@ -85,7 +95,7 @@ const OrphanageDetails: React.FC = () => {
             />
           </Map>
 
-          <RoutesContainer>
+          <RoutesContainer onPress={handleOpenMaps}>
             <RoutesText>Ver rotas no Google Maps</RoutesText>
           </RoutesContainer>
         </MapContainer>
@@ -102,10 +112,17 @@ const OrphanageDetails: React.FC = () => {
               {`Segunda à Sexta ${orphanages[params.orphanage].opening_hours}`}
             </ScheduleTextBlue>
           </ScheduleItemBlue>
-          <ScheduleItemGreen>
-            <Feather name="info" size={40} color="#39CC83" />
-            <ScheduleTextGreen>Atendemos fim de semana</ScheduleTextGreen>
-          </ScheduleItemGreen>
+          {orphanages[params.orphanage].open_on_weekends ? (
+            <ScheduleItemGreen>
+              <Feather name="info" size={40} color="#39CC83" />
+              <ScheduleTextGreen>Atendemos fim de semana</ScheduleTextGreen>
+            </ScheduleItemGreen>
+          ) : (
+            <ScheduleItemRed>
+              <Feather name="info" size={40} color="#FF669D" />
+              <ScheduleTextRed>Não atendemos fim de semana</ScheduleTextRed>
+            </ScheduleItemRed>
+          )}
         </ScheduleContainer>
 
         {orphanages[params.orphanage].whatsapp && (

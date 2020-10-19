@@ -55,7 +55,7 @@ export const Map = styled(MapView)`
   height: 150px;
 `;
 
-export const RoutesContainer = styled.View`
+export const RoutesContainer = styled.TouchableOpacity`
   padding: 16px;
   align-items: center;
   justify-content: center;
@@ -92,8 +92,17 @@ export const ScheduleItemGreen = styled.View<Themed>`
   width: 48%;
   padding: 20px;
   background-color: ${props => props.theme.color.green_item_background};
-  border-width: 1;
+  border-width: 1px;
   border-color: ${props => props.theme.color.border_color_green};
+  border-radius: 20px;
+`;
+
+export const ScheduleItemRed = styled.View<Themed>`
+  width: 48%;
+  padding: 20px;
+  background-color: ${props => props.theme.color.background_red};
+  border-width: 1px;
+  border-color: ${props => props.theme.color.light_red};
   border-radius: 20px;
 `;
 
@@ -111,6 +120,14 @@ export const ScheduleTextGreen = styled.Text<Themed>`
   line-height: 24px;
   margin-top: 20px;
   color: ${props => props.theme.color.green};
+`;
+
+export const ScheduleTextRed = styled.Text<Themed>`
+  font-family: ${fonts.nunito_semibold};
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 20px;
+  color: ${props => props.theme.color.red};
 `;
 
 export const ContactButton = styled(RectButton)`

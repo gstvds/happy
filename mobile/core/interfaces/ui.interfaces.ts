@@ -3,6 +3,8 @@ export interface IColor {
   black: string;
   blue: string;
   green: string;
+  red: string;
+  light_red: string;
   light_blue: string;
   grey: string;
   title: string;
@@ -11,6 +13,7 @@ export interface IColor {
   border_color_green: string;
   background: string;
   background_green: string;
+  background_red: string;
   green_item_background: string;
 }
 

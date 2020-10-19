@@ -89,7 +89,7 @@ const OrphanagesMap: React.FC = () => {
             shadowOpacity: 0.5,
           }}
         >
-          <FooterText>2 orfanatos encontrados</FooterText>
+          <FooterText>{`${orphanages.length} orfanatos encontrados`}</FooterText>
 
           <CreateOrphanageButton
             onPress={() => navigation.navigate(SELECT_MAP_POSITION_PAGE)}
