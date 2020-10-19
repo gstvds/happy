@@ -22,10 +22,18 @@ import {
   SELECT_MAP_POSITION_PAGE,
 } from '../../helpers/routes';
 import core from '../../../core';
+import { getOrphanages } from '../../../core/api';
 
 const OrphanagesMap: React.FC = () => {
-  const [theme] = usePulse([core.ui.state.THEME]);
+  const [theme, orphanages] = usePulse([
+    core.ui.state.THEME,
+    core.orphanages.state.ORPHANAGES,
+  ]);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    getOrphanages();
+  }, []);
 
   useEffect(() => {
     core.ui.setStatusBar('dark');
@@ -43,26 +51,29 @@ const OrphanagesMap: React.FC = () => {
             longitudeDelta: 0.008,
           }}
         >
-          <Marker
-            coordinate={{
-              latitude: -22.5542445,
-              longitude: -47.446738,
-            }}
-            icon={mapMarker}
-            calloutAnchor={{
-              x: 2.2,
-              y: 0.7,
-            }}
-          >
-            <Callout
-              tooltip
-              onPress={() => navigation.navigate(ORPHANAGE_DETAILS_PAGE)}
+          {orphanages.map(orphanage => (
+            <Marker
+              key={orphanage.id}
+              coordinate={{
+                latitude: orphanage.latitude,
+                longitude: orphanage.longitude,
+              }}
+              icon={mapMarker}
+              calloutAnchor={{
+                x: 2.2,
+                y: 0.7,
+              }}
             >
-              <CalloutContainer>
-                <CalloutText>Lar Doce Lar</CalloutText>
-              </CalloutContainer>
-            </Callout>
-          </Marker>
+              <Callout
+                tooltip
+                onPress={() => navigation.navigate(ORPHANAGE_DETAILS_PAGE)}
+              >
+                <CalloutContainer>
+                  <CalloutText>{orphanage.name}</CalloutText>
+                </CalloutContainer>
+              </Callout>
+            </Marker>
+          ))}
         </Map>
 
         <Footer

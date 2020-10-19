@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 
-import { ThemeProvider } from 'styled-components/native';
 import mapMarkerImg from '../../images/map-marker.png';
 
 import {

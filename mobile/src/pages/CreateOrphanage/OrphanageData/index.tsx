@@ -1,9 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { usePulse } from '@pulsejs/react';
 
-import { ThemeProvider } from 'styled-components/native';
 import {
   Container,
   Title,
