@@ -70,7 +70,7 @@ const OrphanageDetails: React.FC = () => {
 
       <DetailsContainer>
         <Title>{orphanages[params.orphanage].name}</Title>
-        <Description>{orphanages[params.orphanage].description}</Description>
+        <Description>{orphanages[params.orphanage].about}</Description>
 
         <MapContainer>
           <Map

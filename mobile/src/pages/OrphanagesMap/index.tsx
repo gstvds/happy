@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { usePulse } from '@pulsejs/react';
 import { ThemeProvider } from 'styled-components/native';
 
@@ -33,9 +33,9 @@ const OrphanagesMap: React.FC = () => {
   ]);
   const navigation = useNavigation();
 
-  useEffect(() => {
+  useFocusEffect(() => {
     getOrphanages();
-  }, []);
+  });
 
   useEffect(() => {
     core.ui.setStatusBar('dark');

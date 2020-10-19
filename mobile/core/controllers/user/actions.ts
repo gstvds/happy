@@ -1,4 +1,4 @@
-import { USER_LOCATION } from './state';
+import { USER_LOCATION, CREATE_LOCATION } from './state';
 
 interface Location {
   latitude: number;
@@ -8,4 +8,8 @@ interface Location {
 export function addLocation(location: Location): void {
   const { latitude, longitude } = location;
   USER_LOCATION.set([latitude, longitude]);
+}
+
+export function newLocation(location: Location): void {
+  CREATE_LOCATION.set(location);
 }

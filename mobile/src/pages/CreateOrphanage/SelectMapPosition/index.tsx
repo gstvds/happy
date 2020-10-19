@@ -1,16 +1,23 @@
 import React from 'react';
 
 import { useNavigation } from '@react-navigation/native';
-import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { MapEvent, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { usePulse } from '@pulsejs/react';
 
 import { Container, Map, NextButton, NextButtonText } from './styles';
 
 import mapMarkerImg from '../../../images/map-marker.png';
 
 import { ORPHANAGE_DATA_PAGE } from '../../../helpers/routes';
+import core from '../../../../core';
 
 const SelectMapPosition: React.FC = () => {
+  const [location] = usePulse([core.user.state.CREATE_LOCATION]);
   const navigation = useNavigation();
+
+  const handleSelectMapPosition = (event: MapEvent) => {
+    core.user.newLocation(event.nativeEvent.coordinate);
+  };
 
   return (
     <Container>
@@ -22,16 +29,24 @@ const SelectMapPosition: React.FC = () => {
           longitudeDelta: 0.008,
         }}
         provider={PROVIDER_GOOGLE}
+        onPress={handleSelectMapPosition}
       >
-        <Marker
-          icon={mapMarkerImg}
-          coordinate={{ latitude: -27.2092052, longitude: -49.6401092 }}
-        />
+        {location.latitude !== 0 && (
+          <Marker
+            icon={mapMarkerImg}
+            coordinate={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+            }}
+          />
+        )}
       </Map>
 
-      <NextButton onPress={() => navigation.navigate(ORPHANAGE_DATA_PAGE)}>
-        <NextButtonText>Próximo</NextButtonText>
-      </NextButton>
+      {location.latitude !== 0 && (
+        <NextButton onPress={() => navigation.navigate(ORPHANAGE_DATA_PAGE)}>
+          <NextButtonText>Próximo</NextButtonText>
+        </NextButton>
+      )}
     </Container>
   );
 };

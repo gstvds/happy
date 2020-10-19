@@ -1,4 +1,4 @@
 import { App } from '../../app';
-import { Orphanage } from '../../interfaces/orphanages.interfaces';
+import { IOrphanage } from '../../interfaces/orphanages.interfaces';
 
-export const ORPHANAGES = App.State<Orphanage[]>([]);
+export const ORPHANAGES = App.State<IOrphanage[]>([]);

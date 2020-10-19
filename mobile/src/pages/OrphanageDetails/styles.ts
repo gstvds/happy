@@ -67,7 +67,7 @@ export const RoutesText = styled.Text<Themed>`
 `;
 
 export const Separator = styled.View<Themed>`
-  height: 0.8;
+  height: 0.8px;
   width: 100%;
   background-color: ${props => props.theme.color.background};
   margin-vertical: 40px;
