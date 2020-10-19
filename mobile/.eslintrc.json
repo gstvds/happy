@@ -36,6 +36,7 @@
     "@typescript-eslint/no-use-before-define": [0],
     "react/style-prop-object": "off",
     "import/no-extraneous-dependencies": "off",
+    "react/prop-types": "off",
     "camelcase":"off",
     "react/jsx-filename-extension": [
       1,

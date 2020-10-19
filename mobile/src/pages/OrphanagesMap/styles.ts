@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
-import fonts from '../../helpers/fonts';
+import { RectButton } from 'react-native-gesture-handler';
 
+import fonts from '../../helpers/fonts';
 import { ITheme } from '../../../core/interfaces/ui.interfaces';
 
 interface Themed {
@@ -56,10 +57,10 @@ export const FooterText = styled.Text<Themed>`
   font-family: ${fonts.nunito_bold};
 `;
 
-export const CreateOrphanageButton = styled.TouchableOpacity<Themed>`
+export const CreateOrphanageButton = styled(RectButton)`
   width: 56px;
   height: 56px;
-  background-color: ${props => props.theme.color.light_blue};
+  background-color: #15c3d6;
   border-radius: 20px;
   justify-content: center;
   align-items: center;

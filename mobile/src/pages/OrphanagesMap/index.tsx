@@ -17,7 +17,10 @@ import {
 
 import mapMarker from '../../images/map-marker.png';
 
-import { ORPHANAGE_DETAILS_PAGE } from '../../helpers/routes';
+import {
+  ORPHANAGE_DETAILS_PAGE,
+  SELECT_MAP_POSITION_PAGE,
+} from '../../helpers/routes';
 import core from '../../../core';
 
 const OrphanagesMap: React.FC = () => {
@@ -71,7 +74,9 @@ const OrphanagesMap: React.FC = () => {
         >
           <FooterText>2 orfanatos encontrados</FooterText>
 
-          <CreateOrphanageButton onPress={() => {}}>
+          <CreateOrphanageButton
+            onPress={() => navigation.navigate(SELECT_MAP_POSITION_PAGE)}
+          >
             <Feather name="plus" size={20} color="#FFF" />
           </CreateOrphanageButton>
         </Footer>
