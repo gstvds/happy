@@ -7,6 +7,7 @@ export interface Orphanage {
   opening_hours: string;
   latitude: number;
   longitude: number;
+  whatsapp: string;
   images: Array<{
     url: string;
     id: number;

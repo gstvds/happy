@@ -21,13 +21,15 @@ import {
   ORPHANAGE_DETAILS_PAGE,
   SELECT_MAP_POSITION_PAGE,
 } from '../../helpers/routes';
+
 import core from '../../../core';
 import { getOrphanages } from '../../../core/api';
 
 const OrphanagesMap: React.FC = () => {
-  const [theme, orphanages] = usePulse([
+  const [theme, orphanages, user_location] = usePulse([
     core.ui.state.THEME,
     core.orphanages.state.ORPHANAGES,
+    core.user.state.USER_LOCATION,
   ]);
   const navigation = useNavigation();
 
@@ -45,13 +47,13 @@ const OrphanagesMap: React.FC = () => {
         <Map
           provider={PROVIDER_GOOGLE}
           initialRegion={{
-            latitude: -22.5542445,
-            longitude: -47.446738,
+            latitude: user_location[0],
+            longitude: user_location[1],
             latitudeDelta: 0.008,
             longitudeDelta: 0.008,
           }}
         >
-          {orphanages.map(orphanage => (
+          {orphanages.map((orphanage, index) => (
             <Marker
               key={orphanage.id}
               coordinate={{
@@ -66,7 +68,11 @@ const OrphanagesMap: React.FC = () => {
             >
               <Callout
                 tooltip
-                onPress={() => navigation.navigate(ORPHANAGE_DETAILS_PAGE)}
+                onPress={() => {
+                  navigation.navigate(ORPHANAGE_DETAILS_PAGE, {
+                    orphanage: index,
+                  });
+                }}
               >
                 <CalloutContainer>
                   <CalloutText>{orphanage.name}</CalloutText>

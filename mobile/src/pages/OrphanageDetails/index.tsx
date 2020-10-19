@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import React from 'react';
+import { ScrollView, View, Linking } from 'react-native';
 import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
+import { usePulse } from '@pulsejs/react';
+import { useRoute } from '@react-navigation/native';
 
 import mapMarkerImg from '../../images/map-marker.png';
 
@@ -26,41 +28,45 @@ import {
   Title,
 } from './styles';
 
+import core from '../../../core';
+
 const OrphanageDetails: React.FC = () => {
+  const [orphanages] = usePulse([core.orphanages.state.ORPHANAGES]);
+  const { params } = useRoute() as { params: { orphanage: number } };
+
+  const handleWhatsApp = () => {
+    Linking.openURL(
+      `http://api.whatsapp.com/send?1=pt_br&phone=${
+        orphanages[params.orphanage].whatsapp
+      }`,
+    );
+  };
+
+  if (!params) return <View />;
   return (
     <Container>
       <ImagesContainer>
         <ScrollView horizontal pagingEnabled>
-          <Image
-            source={{
-              uri: 'https://fmnova.com.br/images/noticias/safe_image.jpg',
-            }}
-          />
-          <Image
-            source={{
-              uri: 'https://fmnova.com.br/images/noticias/safe_image.jpg',
-            }}
-          />
-          <Image
-            source={{
-              uri: 'https://fmnova.com.br/images/noticias/safe_image.jpg',
-            }}
-          />
+          {orphanages[params.orphanage].images.map(image => (
+            <Image
+              key={image.id}
+              source={{
+                uri: image.url,
+              }}
+            />
+          ))}
         </ScrollView>
       </ImagesContainer>
 
       <DetailsContainer>
-        <Title>Orf. Esperança</Title>
-        <Description>
-          Presta assistência a crianças de 06 a 15 anos que se encontre em
-          situação de risco e/ou vulnerabilidade social.
-        </Description>
+        <Title>{orphanages[params.orphanage].name}</Title>
+        <Description>{orphanages[params.orphanage].description}</Description>
 
         <MapContainer>
           <Map
             initialRegion={{
-              latitude: -27.2092052,
-              longitude: -49.6401092,
+              latitude: orphanages[params.orphanage].latitude,
+              longitude: orphanages[params.orphanage].longitude,
               latitudeDelta: 0.008,
               longitudeDelta: 0.008,
             }}
@@ -73,8 +79,8 @@ const OrphanageDetails: React.FC = () => {
             <Marker
               icon={mapMarkerImg}
               coordinate={{
-                latitude: -27.2092052,
-                longitude: -49.6401092,
+                latitude: orphanages[params.orphanage].latitude,
+                longitude: orphanages[params.orphanage].longitude,
               }}
             />
           </Map>
@@ -87,15 +93,14 @@ const OrphanageDetails: React.FC = () => {
         <Separator />
 
         <Title>Instruções para visita</Title>
-        <Description>
-          Venha como se sentir a vontade e traga muito amor e paciência para
-          dar.
-        </Description>
+        <Description>{orphanages[params.orphanage].instructions}</Description>
 
         <ScheduleContainer>
           <ScheduleItemBlue>
             <Feather name="clock" size={40} color="#2AB5D1" />
-            <ScheduleTextBlue>Segunda à Sexta 8h às 18h</ScheduleTextBlue>
+            <ScheduleTextBlue>
+              {`Segunda à Sexta ${orphanages[params.orphanage].opening_hours}`}
+            </ScheduleTextBlue>
           </ScheduleItemBlue>
           <ScheduleItemGreen>
             <Feather name="info" size={40} color="#39CC83" />
@@ -103,10 +108,12 @@ const OrphanageDetails: React.FC = () => {
           </ScheduleItemGreen>
         </ScheduleContainer>
 
-        <ContactButton onPress={() => {}}>
-          <FontAwesome name="whatsapp" size={24} color="#FFF" />
-          <ContactButtonText>Entrar em contato</ContactButtonText>
-        </ContactButton>
+        {orphanages[params.orphanage].whatsapp && (
+          <ContactButton onPress={handleWhatsApp}>
+            <FontAwesome name="whatsapp" size={24} color="#FFF" />
+            <ContactButtonText>Entrar em contato</ContactButtonText>
+          </ContactButton>
+        )}
       </DetailsContainer>
     </Container>
   );
