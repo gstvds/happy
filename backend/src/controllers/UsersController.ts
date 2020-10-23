@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
+import userView from '../views/user_view';
 import User from '../models/User';
 
 export default {
@@ -28,6 +29,6 @@ export default {
 
     await usersRepository.save(user);
 
-    return response.status(201).json(user);
+    return response.status(201).json(userView.render(user));
   },
 };
