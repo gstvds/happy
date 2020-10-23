@@ -4,6 +4,7 @@ import { hash } from 'bcryptjs';
 
 import userView from '../views/user_view';
 import User from '../models/User';
+import AppError from '../errors/AppError';
 
 export default {
   async create(request: Request, response: Response): Promise<Response> {
@@ -16,7 +17,7 @@ export default {
     });
 
     if (checkUsersExists) {
-      throw new Error('User already exists');
+      throw new AppError('User already exists');
     }
 
     const hashedPassword = await hash(password, 8);
